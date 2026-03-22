@@ -18,13 +18,25 @@ Your wallet (Green, Ibis, Sparrow...)
 
 ## Requirements
 
-- Umbrel with **Elements Core** app installed and synced
-- ~2 GB additional disk space for Electrs indexes
-- ~1 GB RAM
+### Electrs-Liquid (this app)
+- **Disk:** 5-15 GB for indexes (Liquid has far fewer transactions than Bitcoin mainnet)
+- **RAM:** 1-2 GB during normal operation
+- `--lightmode` available to reduce disk usage by ~50% at the cost of slower lookups
+
+### Elements Core (dependency, already installed on Umbrel)
+- **Disk:** ~50 GB for the Liquid blockchain
+- **RAM:** up to 6 GB (especially during initial block download with confidential proof verification)
+
+### Total stack (Elements + Electrs-Liquid)
+- **Disk:** ~55-65 GB
+- **RAM:** 4-8 GB combined
+- **CPU:** any hardware capable of running Umbrel
+
+> **Note:** These are conservative estimates. The Liquid chain is orders of magnitude smaller than Bitcoin mainnet, where Electrs indexes alone require 610+ GB. Exact figures will be confirmed after real-world testing.
 
 ## Docker Image
 
-The Docker image is built via GitHub Actions and published to `ghcr.io/copexit/electrs-liquid`.
+The Docker image is built via GitHub Actions and published to `ghcr.io/4rkad/electrs-liquid-umbrel`.
 
 To trigger a build, push a version tag:
 
