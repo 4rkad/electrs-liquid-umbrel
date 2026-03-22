@@ -1,0 +1,40 @@
+manifestVersion: 1.1
+id: electrs-liquid
+category: bitcoin
+name: Electrs Liquid
+version: "0.4.1"
+tagline: Electrum Server for the Liquid Network
+description: >-
+  Run your personal Electrum server for the Liquid Network and connect
+  your wallet to it instead of relying on Blockstream's public servers.
+
+
+  Without your own Electrs Liquid server, your wallet queries Blockstream's
+  servers to check your balances and transactions — leaking which addresses
+  are yours. Even though Liquid uses Confidential Transactions (hidden amounts),
+  the transaction graph and your addresses are still visible.
+
+
+  With this app, all wallet queries stay local. Nobody can build a profile
+  of your Liquid activity.
+
+
+  Powered by Blockstream's fork of electrs with Liquid support.
+releaseNotes: >-
+  Initial release of Electrs Liquid for Umbrel.
+developer: Copexit
+website: https://github.com/Copexit
+dependencies:
+  - elements
+repo: https://github.com/Copexit/electrs-liquid-umbrel
+support: https://github.com/Copexit/electrs-liquid-umbrel/issues
+port: 3062
+gallery:
+  - 1.jpg
+  - 2.jpg
+  - 3.jpg
+path: ""
+deterministicPassword: false
+torOnly: false
+submitter: Copexit
+submission: ""

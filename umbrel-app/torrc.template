@@ -1,0 +1,2 @@
+HiddenServiceDir /data/electrs-liquid/main
+HiddenServicePort 60601 electrs-liquid_electrs_1:60601

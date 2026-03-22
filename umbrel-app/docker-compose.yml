@@ -1,0 +1,44 @@
+version: "3.7"
+
+services:
+  app_proxy:
+    environment:
+      APP_HOST: $APP_ELECTRS_LIQUID_NODE_IP
+      APP_PORT: 3006
+
+  electrs:
+    image: ghcr.io/copexit/electrs-liquid:latest
+    restart: on-failure
+    stop_grace_period: 30s
+    volumes:
+      - "${APP_DATA_DIR}/data/electrs:/data"
+    ports:
+      - "${APP_ELECTRS_LIQUID_NODE_PORT}:${APP_ELECTRS_LIQUID_NODE_PORT}"
+    environment:
+      ELECTRS_LOG_FILTERS: "INFO"
+    command:
+      - --network
+      - liquid
+      - --daemon-rpc-addr
+      - "${APP_ELEMENTS_NODE_IP}:${APP_ELEMENTS_NODE_RPC_PORT}"
+      - --cookie
+      - "elements:${APP_ELEMENTS_RPC_PASSWORD}"
+      - --electrum-rpc-addr
+      - "0.0.0.0:${APP_ELECTRS_LIQUID_NODE_PORT}"
+      - --db-dir
+      - /data/db
+      - --daemon-p2p-addr
+      - "${APP_ELEMENTS_NODE_IP}:${APP_ELEMENTS_NODE_P2P_PORT}"
+    networks:
+      default:
+        ipv4_address: $APP_ELECTRS_LIQUID_NODE_IP
+
+  tor:
+    image: getumbrel/tor:0.4.7.8@sha256:2ace83f22501f58857fa9b403009f595137fa2e7986c4fda79d82a8119072b6a
+    user: "1000:1000"
+    restart: on-failure
+    volumes:
+      - ${APP_DATA_DIR}/torrc:/etc/tor/torrc:ro
+      - ${TOR_DATA_DIR}:/data
+    environment:
+      HOME: "/tmp"
