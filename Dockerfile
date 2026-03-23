@@ -14,6 +14,10 @@ ARG ELECTRS_VERSION=new-index
 RUN git clone --branch ${ELECTRS_VERSION} --depth 1 \
     https://github.com/Blockstream/electrs.git .
 
+# Apply compact headers patch to reduce RAM usage during sync
+COPY compact-headers.patch /build/
+RUN git apply compact-headers.patch
+
 # Build with liquid feature
 RUN cargo build --locked --features liquid --release --bin electrs
 
