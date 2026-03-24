@@ -26,15 +26,16 @@ FROM debian:bookworm-slim
 
 RUN apt-get update && apt-get install -y \
     libsnappy1v5 \
+    gosu \
     && rm -rf /var/lib/apt/lists/* \
     && adduser --disabled-password --uid 1000 --home /data electrs
 
 COPY --from=builder /build/target/release/electrs /usr/local/bin/electrs
-
-USER electrs
+COPY entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/entrypoint.sh
 
 EXPOSE 60601
 
 STOPSIGNAL SIGINT
 
-ENTRYPOINT ["electrs"]
+ENTRYPOINT ["entrypoint.sh"]
