@@ -8,10 +8,11 @@ services:
 
   electrs:
     image: ghcr.io/4rkad/electrs-liquid-umbrel:v0.4.1
-    restart: on-failure
+    restart: always
     stop_grace_period: 30s
     volumes:
       - "${APP_DATA_DIR}/data/electrs:/data"
+      - "${APP_DATA_DIR}/../elements/data:/data/.bitcoin:ro"
     ports:
       - "${APP_ELECTRS_LIQUID_NODE_PORT}:${APP_ELECTRS_LIQUID_NODE_PORT}"
     environment:
@@ -21,8 +22,8 @@ services:
       - liquid
       - --daemon-rpc-addr
       - "${APP_ELEMENTS_NODE_IP}:${APP_ELEMENTS_NODE_RPC_PORT}"
-      - --cookie
-      - "elements:${APP_ELEMENTS_RPC_PASSWORD}"
+      - --daemon-dir
+      - /data/.bitcoin
       - --electrum-rpc-addr
       - "0.0.0.0:${APP_ELECTRS_LIQUID_NODE_PORT}"
       - --db-dir
