@@ -17,6 +17,7 @@ services:
       - "${APP_ELECTRS_LIQUID_NODE_PORT}:${APP_ELECTRS_LIQUID_NODE_PORT}"
     environment:
       ELECTRS_LOG_FILTERS: "INFO"
+      ELEMENTS_RPC_PASSWORD: "${APP_ELEMENTS_RPC_PASSWORD}"
     command:
       - --network
       - liquid
