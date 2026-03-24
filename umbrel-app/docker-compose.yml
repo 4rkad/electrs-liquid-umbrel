@@ -22,8 +22,8 @@ services:
       - liquid
       - --daemon-rpc-addr
       - "${APP_ELEMENTS_NODE_IP}:${APP_ELEMENTS_NODE_RPC_PORT}"
-      - --daemon-dir
-      - /data/.bitcoin
+      - --cookie
+      - "elements:${APP_ELEMENTS_RPC_PASSWORD}"
       - --electrum-rpc-addr
       - "0.0.0.0:${APP_ELECTRS_LIQUID_NODE_PORT}"
       - --db-dir
