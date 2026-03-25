@@ -19,7 +19,7 @@ Your wallet (Blockstream app, Ibis wallet, Bull wallet, Sideswap...)
 ## Requirements
 
 ### Electrs-Liquid (this app)
-- **Disk:** ~65 GB for indexes
+- **Disk:** ~61 GB for indexes
 - **RAM:** 1-2 GB during normal operation
 - `--lightmode` available to reduce disk usage by ~50% at the cost of slower lookups
 
@@ -28,7 +28,7 @@ Your wallet (Blockstream app, Ibis wallet, Bull wallet, Sideswap...)
 - **RAM:** up to 6 GB (especially during initial block download with confidential proof verification)
 
 ### Total stack (Elements + Electrs-Liquid)
-- **Disk:** ~134 GB
+- **Disk:** ~130 GB
 - **RAM:** 4-8 GB combined (during initial sync, lower after)
 - **CPU:** any hardware capable of running Umbrel
 
